@@ -23,7 +23,7 @@ const routes = [
 	{
 		path: "/mylist",
 		name: "MyListPage",
-		component: MyListPage
+    component: MyListPage,
 	},
 	{
 		path: "/login",

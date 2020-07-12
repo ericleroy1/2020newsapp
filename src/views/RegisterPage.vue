@@ -10,12 +10,12 @@
 								<v-spacer />
 							</v-toolbar>
 							<v-card-text>
-								<v-form>
+								<v-form @submit.prevent="pressed">
 									<v-text-field
 										v-model="email"
 										label="email"
 										name="register"
-										type="text"
+										type="email"
 									/>
 
 									<v-text-field
@@ -25,11 +25,12 @@
 										name="password"
 										type="password"
 									/>
+									<v-btn type="submit" color="primary">Register</v-btn>
 								</v-form>
 							</v-card-text>
 							<v-card-actions>
 								<v-spacer />
-								<v-btn v-on:click="register" color="primary">Register</v-btn>
+								
 							</v-card-actions>
 						</v-card>
 					</v-col>
@@ -44,7 +45,9 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 import { mapActions } from "vuex";
 import { mapState } from "vuex";
 export default {
@@ -52,28 +55,20 @@ export default {
 	data() {
 		return {
 			email: "",
-			password: ""
+			password: "",
+			error: ""
 		};
 	},
 	methods: {
-		register: function(e) {
-			firebase
-				.auth()
-				.createUserWithEmailAndPassword(this.email, this.password)
-				.then(function() {
-					alert("Your account has been created!");
-				})
-				.then(
-					user => {
-						this.$router.push("/login");
-					},
-					err => {
-						alert(err.message);
-					}
-				);
-			e.preventDefault();
-			this.$store.commit("SET_CURRENT_USER", this.email);
-		}
+		async pressed(){
+			try{
+			firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+			alert("Registration Successful")
+			this.$router.replace({name: "Home"})
+			}catch(err){
+				console.log(err)
+			}
+		},
 	}
 };
 </script>
