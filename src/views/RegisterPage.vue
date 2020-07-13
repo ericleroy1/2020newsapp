@@ -28,10 +28,6 @@
 									<v-btn type="submit" color="primary">Register</v-btn>
 								</v-form>
 							</v-card-text>
-							<v-card-actions>
-								<v-spacer />
-								
-							</v-card-actions>
 						</v-card>
 					</v-col>
 				</v-row>
@@ -48,8 +44,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
-import { mapActions } from "vuex";
-import { mapState } from "vuex";
 export default {
 	name: "register",
 	data() {
@@ -64,11 +58,14 @@ export default {
 			try{
 			firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
 			alert("Registration Successful")
-			this.$router.replace({name: "Home"})
+			this.$router.replace({name: "LoginPage"})
 			}catch(err){
 				console.log(err)
 			}
 		},
+		register(){
+
+		}
 	}
 };
 </script>

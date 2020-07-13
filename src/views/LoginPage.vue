@@ -10,7 +10,7 @@
 								<v-spacer />
 							</v-toolbar>
 							<v-card-text>
-								<v-form>
+								<v-form @submit.prevent="pressed">
 									<v-text-field
 										v-model="email"
 										label="email"
@@ -25,12 +25,9 @@
 										name="password"
 										type="password"
 									/>
+									<v-btn type="submit" color="primary">Login</v-btn>
 								</v-form>
 							</v-card-text>
-							<v-card-actions>
-								<v-spacer />
-								<v-btn v-on:click="login" color="primary">Login</v-btn>
-							</v-card-actions>
 						</v-card>
 					</v-col>
 				</v-row>
@@ -44,32 +41,27 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import { mapActions } from "vuex";
-import { mapState } from "vuex";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
 	name: "login",
 	data: function() {
 		return {
-			userNameDisplay: "",
 			email: "",
 			password: ""
 		};
 	},
 	methods: {
-		login: function(e) {
-			e.preventDefault();
-			firebase
-				.auth()
-				.signInWithEmailAndPassword(this.email, this.password)
-				.then(user => {
-					this.$router.push("/");
-					this.$store.commit("SET_CURRENT_USER", this.email);
-				})
-				.catch(error => {
-					console.log(error);
-				});
+			pressed(){
+			try{
+			firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+			this.$router.replace({name: "Home"})
+			}catch(err){
+				console.log(err)
+			}
+		},
 		}
 	}
-};
+
 </script>

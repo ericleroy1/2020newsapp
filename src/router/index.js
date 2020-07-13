@@ -6,6 +6,7 @@ import SearchPage from "../views/SearchPage.vue";
 import MyListPage from "../views/MyListPage";
 import LoginPage from "../views/LoginPage";
 import RegisterPage from "../views/RegisterPage";
+import LogoutPage from "../views/LogoutPage";
 
 Vue.use(VueRouter);
 
@@ -34,7 +35,12 @@ const routes = [
 		path: "/register",
 		name: "RegisterPage",
 		component: RegisterPage
-	}
+  },
+  {
+    path: "/logout",
+    name: "LogoutPage",
+    component: LogoutPage
+  }
 	// {
 	//   path: '/about',
 	//   name: 'About',
