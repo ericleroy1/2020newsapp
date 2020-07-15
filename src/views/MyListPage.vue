@@ -2,25 +2,25 @@
 	<div>
 		<h3 class="heading">MyList</h3>
 		<ul id="my-list">
-			<li v-for="myListItem in myList" :key="myListItem.id">
-				<div class="row">
+		<li v-for="myListItem in myList" :key="myListItem.id">
+			<div class="row">
 
-					<div class="col-8 myList-link">
-						<a v-bind:href="myListItem.url">
-						<p>{{ myListItem.link }}</p>
-						</a>
-					</div>
+			<div class="col-8 myList-link">
+				<a v-bind:href="myListItem.url">
+				<p>{{ myListItem.link }}</p>
+				</a>
+			</div>
 	
 
-				<div class="col-1"></div>
-					<div class="col-2 delete-button">
-						<button
-							class="btn btn-small btn-outline-secondary"	
-							v-on:click="deleteListItem(myListItem.id)">Delete
-						</button>
-					</div>
-					</div>
-			</li>
+			<div class="col-1"></div>
+				<div class="col-2 delete-button">
+					<button
+					class="btn btn-small btn-outline-secondary"	
+					v-on:click="deleteListItem(myListItem.id)">Delete
+					</button>
+				</div>
+			</div>
+		</li>
 		</ul>
 	</div>
 </template>
@@ -44,12 +44,11 @@ export default {
 	created() {
 		this.getMyList();
 	},
-	computed: {
-		
+	computed: {	
 	},
 	methods: {
-		async getMyList() {
-      var myListRef = await firebase
+	getMyList() {
+      var myListRef = firebase
       .firestore()
       .collection("users")
       .doc(firebase.auth().currentUser.uid)
@@ -73,7 +72,6 @@ export default {
 		.doc(myListItem)
 		.delete();
 	}
-
 	}
 };
 </script>

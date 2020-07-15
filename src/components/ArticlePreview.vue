@@ -1,10 +1,10 @@
 <template>
   
-    <v-card class="my-5 pa-3">
+    <v-card flat class="my-5 pa-3">
     <v-container>
 
       <div>{{ data.source.name }}</div>
-      <a v-bind:href="data.url">
+      <a v-bind:href="data.url" class="text-decoration-none black--text">
       <v-img height="180" v-bind:src="data.urlToImage"></v-img>
 
       
@@ -15,10 +15,11 @@
       </a>
 
       <v-card-actions class="justify-center">
-          <v-btn v-on:click="addToMyList" text>Add to MyList</v-btn>
+          <v-btn outlined color="primary" v-on:click="addToMyList" text>Add to MyList</v-btn>
       </v-card-actions>
 
     </v-container>
+    <v-divider class="mx-4"></v-divider>
     </v-card>
 </template>
 

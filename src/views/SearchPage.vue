@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h3>Search news by keyword</h3>
+		<h3>Search news by keywords</h3>
 
 		<input
 			class="form-control"

@@ -11,12 +11,12 @@
             <div>
                 <span v-if="loggedIn">
                     <router-link to="/logout">
-                    <v-btn v-on:click="pressed" text color="grey">Logout</v-btn>
+                    <v-btn depressed v-on:click="pressed" text color="grey">Logout</v-btn>
                     </router-link>
                     </span>
 				<span v-else>
                     <router-link to="/login">
-                    <v-btn>Login</v-btn>
+                    <v-btn depressed>Login</v-btn>
                     </router-link>
                     </span>
             </div>
@@ -124,4 +124,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
