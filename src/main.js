@@ -5,6 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import axios from "axios";
 import firebase from "firebase/app"
+import 'firebase/firestore'
 
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
@@ -19,11 +20,11 @@ const firebaseConfig = {
   appId: "1:369097604086:web:6a7272319f290f518fe5d7",
   measurementId: "G-ZW3VQX3EVF"
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-
-
+export default db;
 
 new Vue({
   router,

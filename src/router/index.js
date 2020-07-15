@@ -8,6 +8,9 @@ import LoginPage from "../views/LoginPage";
 import RegisterPage from "../views/RegisterPage";
 import LogoutPage from "../views/LogoutPage";
 
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,7 +27,8 @@ const routes = [
 	{
 		path: "/mylist",
 		name: "MyListPage",
-    component: MyListPage,
+		component: MyListPage,
+		meta: {auth: true}
 	},
 	{
 		path: "/login",
@@ -41,18 +45,21 @@ const routes = [
     name: "LogoutPage",
     component: LogoutPage
   }
-	// {
-	//   path: '/about',
-	//   name: 'About',
-	//   // route level code-splitting
-	//   // this generates a separate chunk (about.[hash].js) for this route
-	//   // which is lazy-loaded when the route is visited.
-	//   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-	// }
 ];
 
 const router = new VueRouter({
 	routes
 });
+
+router.beforeEach((to, from, next)=>{
+	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+	const isAuthenticated = firebase.auth().currentUser;
+	if(requiresAuth && !isAuthenticated){
+		next("/login");
+	} else {
+		next();
+	}
+})
+
 
 export default router;
