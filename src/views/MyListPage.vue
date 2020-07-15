@@ -45,7 +45,7 @@ export default {
 		this.getMyList();
 	},
 	computed: {
-		this.getMyList();
+		
 	},
 	methods: {
 		async getMyList() {
