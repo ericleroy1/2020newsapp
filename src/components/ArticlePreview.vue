@@ -26,6 +26,7 @@
 <script>
 import db from "../main"
 import firebase from "firebase"
+import "firebase/auth";
 
 export default {
   name: "ArticlePreview",

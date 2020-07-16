@@ -29,6 +29,7 @@
 
 import db from "../main"
 import firebase from "firebase";
+import "firebase/auth";
 
 export default {
 	name: "myListPage",
@@ -41,10 +42,11 @@ export default {
 			}
 		};
 	},
-	created() {
+	// created() {
+	// 	this.getMyList();
+	// },
+	mounted() {	
 		this.getMyList();
-	},
-	computed: {	
 	},
 	methods: {
 	getMyList() {

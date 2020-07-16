@@ -83,11 +83,11 @@
 </template>
 
 <script>
-import * as firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/auth";
 
 export default {
-    mounted() {
+    created() {
         firebase.auth().onAuthStateChanged(user=> {
             if(user){
                 this.loggedIn = true;
@@ -107,7 +107,7 @@ export default {
         async logout(){
             try {
                 const data = await firebase.auth().signOut;
-                this.$router.replace({name: "LogoutPage"})
+                this.router.replace({name: "LogoutPage"})
             }catch(err){
                 console.log(err)
             }
@@ -115,7 +115,7 @@ export default {
         	pressed(){
 			try{
                 firebase.auth().signOut()
-                this.$router.replace({name: "Home"})
+                this.router.replace({name: "Home"})
 			}catch(err){
 				console.log(err)
 			}
