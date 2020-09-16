@@ -5,7 +5,7 @@
 
       <div>{{ data.source.name }}</div>
       <a v-bind:href="data.url" class="text-decoration-none black--text">
-      <v-img height="180" v-bind:src="data.urlToImage"></v-img>
+      <v-img class="image" height="180" v-bind:src="data.urlToImage"></v-img>
 
       
       <p class="text-wrap">
@@ -55,6 +55,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.image {
+  /* height: 100%; */
+  width: 45%;
+}
+
 
 </style>

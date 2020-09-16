@@ -42,9 +42,6 @@ export default {
 			}
 		};
 	},
-	// created() {
-	// 	this.getMyList();
-	// },
 	mounted() {	
 		this.getMyList();
 	},

@@ -54,12 +54,9 @@ export default {
 	},
 	methods: {
 			pressed(){
-			try{
 			firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-			this.$router.replace({name: "Home"})
-			}catch(err){
-				console.log(err)
-			}
+			.then(()=>this.$router.replace({name: "Home"}))
+			.catch(err=>{alert(err)})
 		},
 		}
 	}
